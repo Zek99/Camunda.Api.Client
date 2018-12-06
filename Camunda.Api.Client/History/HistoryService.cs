@@ -33,5 +33,10 @@
         /// Variable Instance
         /// </summary>
         public HistoricVariableInstanceService VariableInstances => new HistoricVariableInstanceService(_api.VariableInstanceApi.Value);
+
+        /// <summary>
+        /// Task Instance
+        /// </summary>
+        public HistoricTaskService Tasks => new HistoricTaskService(_api.TaskApi.Value);
     }
 }

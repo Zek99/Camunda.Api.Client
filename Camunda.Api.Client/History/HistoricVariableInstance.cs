@@ -58,6 +58,10 @@
         /// An error message in case a Java Serialized Object could not be de-serialized.
         /// </summary>
         public string TenantId;
+        /// <summary>
+        /// The value type of the variable.
+        /// </summary>
+        public new string Type;
 
         public override string ToString() => $"{Name} = {base.ToString()}";
     }

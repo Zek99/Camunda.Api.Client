@@ -18,6 +18,14 @@ namespace Camunda.Api.Client.History
         IDictionary<string, string> IQueryParameters.GetParameters() => this.CreateQueryParameters();
     }
 
+    public class GroupedReport : AbstractReport
+    {
+        /// <summary>
+        /// Groups the tasks report by a given criterion.
+        /// </summary>
+        public GroupBy GroupBy;
+    }
+
     public enum PeriodUnit
     {
         /// <summary>
@@ -40,5 +48,20 @@ namespace Camunda.Api.Client.History
 
         [EnumMember(Value = "count")]
         Count
+    }
+
+    public enum GroupBy
+    {
+        /// <summary>
+        /// Represents a unit for a quarter of the year.
+        /// </summary>
+        [EnumMember(Value = "taskName")]
+        TaskName,
+
+        /// <summary>
+        /// Represents a unit for a month of the year.
+        /// </summary>
+        [EnumMember(Value = "processDefinition")]
+        ProcessDefinition
     }
 }

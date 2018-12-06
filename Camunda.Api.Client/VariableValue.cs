@@ -27,7 +27,7 @@ namespace Camunda.Api.Client
         public const string ValueInfoSerializationDataFormat = "serializationDataFormat";
 
         private const string SerializedTypedObjectTypeName = "dto.SerializedTypedObject";
-        private const string JavaObjectTypeName = "java.lang.Object";
+        private const string JavaObjectTypeName = "Json";
 
         /// <summary>
         /// The value type of the variable.
@@ -103,12 +103,15 @@ namespace Camunda.Api.Client
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool IsSerializedTypedObject =>
-            Type == VariableType.Object &&
-            ValueInfo != null &&
-            ValueInfo.ContainsKey(ValueInfoObjectTypeName) &&
-            ValueInfo.ContainsKey(ValueInfoSerializationDataFormat) &&
-            ValueInfo[ValueInfoObjectTypeName].Equals(SerializedTypedObjectTypeName) &&
-            ValueInfo[ValueInfoSerializationDataFormat].Equals(MediaTypes.Application.Json);
+            Type == VariableType.Json || 
+            (
+                Type == VariableType.Object &&
+                ValueInfo != null &&
+                ValueInfo.ContainsKey(ValueInfoObjectTypeName) &&
+                ValueInfo.ContainsKey(ValueInfoSerializationDataFormat) &&
+                ValueInfo[ValueInfoObjectTypeName].Equals(SerializedTypedObjectTypeName) &&
+                ValueInfo[ValueInfoSerializationDataFormat].Equals(MediaTypes.Application.Json)
+            );
 
         private class VariableValueJsonConverter : JsonConverter
         {
@@ -339,7 +342,8 @@ namespace Camunda.Api.Client
         Date,
         Bytes,
         File,
-        Object
+        Object,
+        Json
     }
 
     public enum BinaryVariableType

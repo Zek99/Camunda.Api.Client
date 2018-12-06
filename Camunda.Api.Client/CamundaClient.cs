@@ -55,6 +55,7 @@ namespace Camunda.Api.Client
             public Lazy<IHistoricJobLogRestService> JobLogApi;
             public Lazy<IHistoricIncidentRestService> IncidentApi;
             public Lazy<IHistoricVariableInstanceRestService> VariableInstanceApi;
+            public Lazy<IHistoricTaskRestService> TaskApi;
         }
 
         static CamundaClient()
@@ -111,6 +112,7 @@ namespace Camunda.Api.Client
                 JobLogApi = CreateService<IHistoricJobLogRestService>(),
                 IncidentApi = CreateService<IHistoricIncidentRestService>(),
                 VariableInstanceApi = CreateService<IHistoricVariableInstanceRestService>(),
+                TaskApi = CreateService<IHistoricTaskRestService>()
             };
         }
 

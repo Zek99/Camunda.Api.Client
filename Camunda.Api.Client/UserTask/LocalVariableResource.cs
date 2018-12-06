@@ -18,11 +18,11 @@ namespace Camunda.Api.Client.UserTask
         /// <summary>
         /// Retrieves all variables of a given task.
         /// </summary>
-        public Task<Dictionary<string, VariableValue>> GetAll() => _api.GetLocalVariables(_taskId);
+        public Task<Dictionary<string, VariableValue>> GetAll(bool deserializeValues = true) => _api.GetLocalVariables(_taskId, deserializeValues);
         /// <summary>
         /// Retrieves a variable from the context of a given task.
         /// </summary>
-        public Task<VariableValue> Get(string variableName) => _api.GetLocalVariable(_taskId, variableName);
+        public Task<VariableValue> Get(string variableName, bool deserializeValues = true) => _api.GetLocalVariable(_taskId, variableName, deserializeValues);
         /// <summary>
         /// Retrieves a binary variable from the context of a given task. Applicable for byte array and file variables.
         /// </summary>
